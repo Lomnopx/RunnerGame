@@ -39,6 +39,9 @@ public:
 
     UPROPERTY(EditAnywhere, Category = "Cleaning")
         float CleanDistance = 2000.0f;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
+        bool IgnoreNextSpawn;
     
     void SpawnObjects();
     void CleanObjects();

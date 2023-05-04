@@ -18,7 +18,6 @@ ASpawnerAndCleaner::ASpawnerAndCleaner()
 void ASpawnerAndCleaner::BeginPlay()
 {
     Super::BeginPlay();
-    UE_LOG(LogTemp, Warning, TEXT("Started Game"));
     // Get initial player and spawner location
     APlayerController* PlayerController = UGameplayStatics::GetPlayerController(this, 0);
     if (PlayerController)
@@ -66,10 +65,18 @@ void ASpawnerAndCleaner::SpawnObjects()
         // Spawn an enemy
         if (EnemyClass)
         {
-            FActorSpawnParameters SpawnParams;
-            SpawnParams.Owner = this;
-            SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-            GetWorld()->SpawnActor<AEnemy>(EnemyClass, SpawnerLocation + FVector(1000.0f, 0, -SpawnerLocation.Z), FRotator::ZeroRotator, SpawnParams);
+            if (IgnoreNextSpawn && 2 >= FMath::RandRange(1, 10))
+            {
+
+            }
+            else
+            {
+                FActorSpawnParameters SpawnParams;
+                SpawnParams.Owner = this;
+                SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+                GetWorld()->SpawnActor<AEnemy>(EnemyClass, SpawnerLocation + FVector(1000.0f, 0, -SpawnerLocation.Z), FRotator::ZeroRotator, SpawnParams);
+                IgnoreNextSpawn = false;
+            }
         }
 
         // Spawn a platform
@@ -83,7 +90,6 @@ void ASpawnerAndCleaner::SpawnObjects()
 
         // Update the spawner location
         SpawnerLocation = PlayerLocation;
-        //UE_LOG(LogTemp, Warning, TEXT("Object Spawned"));
     }
 }
 
@@ -106,7 +112,6 @@ void ASpawnerAndCleaner::CleanObjects()
             {
                 // Destroy the actor
                 Actor->Destroy();
-                //UE_LOG(LogTemp, Warning, TEXT("Object Cleaned"));
             }
         }
     }
