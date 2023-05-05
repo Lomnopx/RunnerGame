@@ -11,3 +11,9 @@ Features:
 * 3 lives in each game
 * Projectile to player collision (Not sure waht kind of projectiles are meant to be in, I used colision with player and obstacles to remove lives when colliding)
 * Basic keyboard controls
+
+
+PART 2
+
+* When passing an obstacle there is a 20% chance that the next obstacle will not spawn
+* An ai player also plays the game, they have a high chance of running into obstacles
