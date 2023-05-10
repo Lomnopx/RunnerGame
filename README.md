@@ -29,4 +29,4 @@ Examples of effective c++ use and consepts
 Bugs
 
 * world generation is tied to the players distance from the last chunk. this means that a new platform and enemy spawn when you are at the end of thelast platform, the ai player is able to move outside this bounds and fall of the map
-* The ai movement system doesn't utilize the same system as the player, thus making them keep the same speed very hard.
+* The ai movement system doesn't utilize the same movement system as the player, thus making them keep the same speed very hard.
